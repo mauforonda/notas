@@ -1,0 +1,312 @@
+{% extends 'lab/index.html.j2' %}
+
+{% block html_head %}
+	{{ super() }}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"> 
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function() {          
+    $('.code_shower').on('click',function(){
+	var header = $(this);
+	var codecell = $(this).next()
+        codecell.slideToggle(0, function() {
+		if (codecell.is(':hidden')) {
+			header.text("{ · }");
+			header.css("border-radius", "25px");
+			header.css("width", "100%")
+			header.css("text-align", "center")
+			header.css("text-align", "center")
+		} else {
+			header.text("×");
+			header.css("width", "auto")
+			header.css("border-radius", "8px 0px 0px 8px")
+		}
+	});
+    });
+    $('.hidden_default').next().hide();
+});
+</script>
+
+<script>
+// Converts integer to roman numeral
+function romanize(num) {
+    var lookup = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1},
+	roman = '',
+	    i;
+	for ( i in lookup ) {
+	    while ( num >= lookup[i] ) {
+		roman += i;
+		num -= lookup[i];
+	    }
+	}
+	return roman;
+ }
+
+// Builds a <ul> Table of Contents from all <headers> in DOM
+function createTOC(){
+    var toc = "";
+    var level = 0;
+    var levels = {}
+    $('#toc').html('');
+
+    $(":header").each(function(i){
+	    if (this.id=='tocheading'){return;}
+        
+	    var titleText = this.innerHTML;
+	    var openLevel = this.tagName[1];
+
+	    if (levels[openLevel]){
+		levels[openLevel] += 1;
+	    } else{
+		levels[openLevel] = 1;
+	    }
+
+	    if (openLevel > level) {
+		toc += (new Array(openLevel - level + 1)).join('<ul class="toc">');
+	    } else if (openLevel < level) {
+		toc += (new Array(level - openLevel + 1)).join("</ul>");
+		for (i=level;i>openLevel;i--){levels[i]=0;}
+	    }
+
+	    level = parseInt(openLevel);
+
+
+	    if (this.id==''){this.id = this.innerHTML.replace(/ /g,"-")}
+	    var anchor = this.id;
+        
+	    toc += '<li><a href="#' + encodeURIComponent(anchor) + '">'
+		+ romanize(levels[openLevel].toString()) + '. ' + titleText
+		+ '</a></li>';
+        
+	});
+
+    
+    if (level) {
+	toc += (new Array(level + 1)).join("</ul>");
+    }
+
+ 
+    $('#toc').append(toc);
+
+};
+
+// Executes the createToc function
+setTimeout(function(){createTOC();},100);
+
+</script>
+
+<style>
+div.input {
+	flex-direction: column !important;
+}
+
+div.input_area {
+	border-radius: 0px 0px 8px 8px;
+}
+
+
+html {
+    font-family: 'Roboto', sans-serif !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backgroundL #fcfcfc;
+}
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+    max-width: 800px;
+    width: 100%;
+    backgroundL #fcfcfc;
+}
+
+.jp-RenderedHTMLCommon p, .jp-RenderedHTMLCommon > :last-child {
+	margin-bottom: 1em;
+}
+
+.dataframe {
+	   margin: 0 auto !important;
+}
+
+table.dataframe tbody tr th {
+	font-style: normal;
+}
+
+td {
+	font-size: 13px;
+}
+
+th {
+	font-size: 14px;
+	color: #91a0b7;
+}
+
+h1, h2, h3, h4, h5, h6, h7, h8, p, li {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+pre {
+    font-family: 'Roboto Mono', monospace !important;
+}
+
+.jp-RenderedText.jp-OutputArea-output pre {
+	padding: 10px !important;
+	background: #fff !important;
+	margin: 10px !important;
+	white-space: pre;
+	border-radius: 10px;
+	border: 1px solid #ced2dd;
+	line-height: 25px;
+	font-family: Roboto !important;
+	font-size: 15px;
+}
+
+.CodeMirror {
+    overflow: auto !important;
+}
+
+.jp-RenderedText.jp-OutputArea-output pre {
+	padding: 10px !important;
+	background: #fff !important;
+	margin: 10px !important;
+	white-space: pre !important;
+	border-radius: 10px;
+	border: 1px solid #ced2dd;
+}
+
+code {
+    font-size: inherit !important;
+}
+
+.jp-InputArea {
+	overflow: hidden;
+	align-content: center;
+	justify-content: left;
+	margin: 2px;
+	background: linear-gradient(180deg, rgb(255, 255, 255) 0%, rgb(252, 252, 252) 48%, rgb(227, 234, 233) 50%, rgb(252, 252, 252) 52%, rgb(255, 255, 255) 100%);
+}
+}
+
+table.dataframe thead tr {
+    color: #6F7695;
+}
+
+table.dataframe tbody tr td {
+    background-color: #fdfdff;
+    color: #6f747d;
+}
+
+h1, h2, h3, h4, h5, h6, h7, h8 {
+    font-style: normal !important;
+    text-decoration: none !important;
+    font-weight: bold !important
+}
+
+h1{
+    font-size: 2.5rem !important
+}
+
+h2{
+    font-size: 2.2rem !important
+}
+
+h3{
+    font-size: 1.9rem !important
+}
+
+h4, h5, h6, h7, h8{
+    font-size: 1.6rem !important;
+    padding: 20px 0px !important;
+}
+
+p {
+	line-height: 1.75em;
+}
+
+.jp-Cell-inputWrapper, .jp-Cell-outputWrapper {
+	margin: 5px 0px;
+}
+
+.jp-RenderedImage.jp-OutputArea-output {
+	margin: 30px 0px;
+}
+
+div.code_shower {
+	background: lightgray;
+	padding: 0px 4px !important;
+	cursor: pointer;
+	border-radius: 25px;
+	width: 100%;
+	text-align: center;
+	font-size: 10px;
+	background: #fff !important;
+	border: 1px solid rgb(227, 234, 233);
+	color: #c2c4ca !important;
+	font-weight: normal;
+	max-width: 22px;
+	line-height: 29px;
+}
+
+#toc {
+	padding: 10px;
+	background: #fff;
+	border: 1px solid #cedbe6;
+	border-radius: 5px;
+}
+
+#toc li {
+	margin: 10px 0px;
+	color: #cedbe6;
+	border-bottom: 1px dotted #cedbe6;
+}
+
+#toc a {
+	color: #698297;
+}
+
+.csl-bib-body {
+	margin: 30px 0px;
+}
+
+.csl-entry {
+	margin: 15px 0px;
+}
+
+.caption {
+	border-top: 1px dotted #a5a8b0;
+	margin: 0px 0px 0px 0px !important;
+	padding-top: 20px;
+	text-align: center !important;
+	color: #7d7e84;
+	font-size: .9em;
+}
+
+.jp-InputArea-editor {
+	filter: hue-rotate(50deg) grayscale(50%);
+}
+
+</style>
+{% endblock html_head %}
+
+{% block input %}
+{% if 'code_shown' in cell['metadata'].get('tags', []) %}
+	<div class="code_shower">×</div>
+{% else %}
+    	<div class="code_shower hidden_default">{ · }</div>
+{% endif %}
+
+{{ super() }}
+{% endblock input %}
+
+{% block output_prompt %}
+{% endblock output_prompt %}
+
+{% block in_prompt %}
+{% endblock in_prompt %}
