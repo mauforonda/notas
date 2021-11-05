@@ -1,0 +1,137 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style type="text/css">
+      
+      
+      html {
+	  font-family: 'Roboto', sans-serif;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+      }
+
+      body {
+	  font-family: 'Roboto', sans-serif;
+	  max-width: 800px;
+	  width: 100%;
+      }
+
+      .index{
+	  display:flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center
+      }
+
+      .entry{
+	  width:100%;
+	  margin: 10px 0px;
+	  border-radius: 5px;
+	  border:1px solid #e3e6ea;
+      }
+
+
+      .title{
+	  border-bottom: 1px solid #e3e6ea; 
+	  text-decoration: none;
+      }
+
+      .title p{
+	  padding:20px 10px;
+	  color:#282c39;
+	  font-weight: bold;
+	  font-size: 1.2rem;
+	  background: #cedbe6;
+	  text-decoration: none;
+	  margin: 0;
+	  border-radius: 3px 3px 0px 0px;
+      }
+
+      .title p:hover{
+	  background:red;
+	  color:white;
+	  border-radius: 5px 5px 0px 0px;
+      }
+
+      .meta{
+	  font-size: .7em;
+	  padding: 3px 5px;
+	  border-radius: 3px;
+	  margin: 20px 0px 0px 0px;
+	  color: #656b75;
+      }
+
+      .meta span{
+	  margin: 5px;
+	  font-size: .7rem;
+	  color: #a2b1bd;
+	  padding: 5px 0px;
+	  border-top: 2px solid #cedbe6;
+      }
+
+      .time{
+	  padding: 10px;
+	  font-size: .7rem;
+	  color: #a2b1bd;
+	  font-style: italic;
+	  opacity: .7;
+      }
+      
+    </style>
+    <!-- <script data-goatcounter="https://mauforonda.goatcounter.com/count" -->
+    <!--         async src="//gc.zgo.at/count.js"></script> -->
+</head>
+<body>
+  <div class="index"></div>
+  <script>
+    
+    function display(data){
+	index = document.querySelector('.index')
+	data.forEach((entry) => {
+	    entry_el = document.createElement('div')
+	    entry_el.classList.add('entry')
+
+	    title_el = document.createElement('a')
+	    title_el.classList.add('title')
+	    title_el.href = entry.path
+	    title_text = document.createElement('p')
+	    title_text.textContent = entry.title
+	    title_el.appendChild(title_text)
+
+	    meta_el = document.createElement('div')
+	    meta_el.classList.add('meta')
+	    lines_code_el = document.createElement('span')
+	    lines_code_el.textContent = `${entry.lines_code} líneas de código`
+	    meta_el.appendChild(lines_code_el)
+	    lines_md_el = document.createElement('span')
+	    lines_md_el.textContent = `${entry.lines_md} líneas de prosa`
+	    meta_el.appendChild(lines_md_el)
+	    plots_el = document.createElement('span')
+	    plots_el.textContent = `${entry.plots} gráficos`
+	    meta_el.appendChild(plots_el)
+
+	    time_el = document.createElement('div')
+	    time_el.classList.add('time')
+	    time_el.textContent = `modificado en ${entry.last_modified}`
+
+	    entry_el.appendChild(title_el)
+	    entry_el.appendChild(meta_el)
+	    entry_el.appendChild(time_el)
+
+	    index.appendChild(entry_el)
+	})
+    }
+    
+    fetch('index.json').then((response) => {
+	response.json().then((data) => {
+	    display(data)
+	})})
+  </script>
+</body>
+</html>

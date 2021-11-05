@@ -52,14 +52,12 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    backgroundL #fcfcfc;
 }
 
 body {
     font-family: 'Roboto', sans-serif !important;
     max-width: 800px;
     width: 100%;
-    backgroundL #fcfcfc;
 }
 
 .jp-RenderedHTMLCommon p, .jp-RenderedHTMLCommon > :last-child {
@@ -258,6 +256,24 @@ div.code_shower {
 	background: #fafafb;
 }
 
+.indexcall {
+	text-align: center;
+	line-height: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.indexcall a {
+	font-size: 50px;
+	margin: 0;
+	position: absolute;
+	color: #cedbe6;
+}
+
+.indexcall a:hover{
+	   color:red;
+}
+
 </style>
 {% endblock html_head %}
 
@@ -325,6 +341,15 @@ html += '</ul></div>'
 
 document.querySelector('h1').insertAdjacentHTML('afterend', html)
 }
+
+indexcall = document.createElement('div')
+indexcall.classList.add('indexcall')
+indexcall_a = document.createElement('a')
+indexcall_a.textContent = '⏺'
+indexcall_a.href = 'https://mauforonda.github.io/notas/'
+indexcall.appendChild(indexcall_a)
+document.body.prepend(indexcall)
+
 </script>
 
 {% endblock footer %}
