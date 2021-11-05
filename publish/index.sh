@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-index='index.json'
+index='publish/index.json'
 base='https://mauforonda.github.io/notas/'
 i=0
 n=$(ls *.ipynb | wc -l)
