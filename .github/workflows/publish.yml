@@ -20,7 +20,7 @@ jobs:
       - name: republish
         run: |
           mkdir -p docs
-          find . -type f -name "*.ipynb" -exec ./publish/publish.sh {} + 
+          for f in $(ls *.ipynb); do ./publish/publish.sh "$f"; done
       - name: push
         uses: s0/git-publish-subdir-action@develop
         env:

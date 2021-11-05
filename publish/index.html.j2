@@ -299,6 +299,8 @@ walk(Array.from(document.body.childNodes))
 var link = (header) =>
   '<li><a href="#' + header.id + '">' + header.title + '</a></li>'
 
+if (headers.length > 0) {
+
 var html = '<div id="toc"><ul>'
 
 headers.forEach((header, index) => {
@@ -319,7 +321,7 @@ headers.forEach((header, index) => {
 html += '</ul></div>'
 
 document.querySelector('h1').insertAdjacentHTML('afterend', html)
-
+}
 </script>
 
 {% endblock footer %}
