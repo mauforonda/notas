@@ -262,18 +262,20 @@ div.code_shower {
 	line-height: 1;
 	display: flex;
 	justify-content: center;
+	margin: 10px 0px 0px 0px;
 }
 
 .indexcall a {
 	font-size: 50px;
 	margin: 0;
 	color: #cedbe6;
-	border-bottom: 2px solid #cedbe6;
+	border-bottom: 10px dotted #cedbe6;
+	width: 60px;
 }
 
 .indexcall a:hover{
 	   color:red;
-	   border-bottom: 2px solid red;
+	   border-bottom: 10px dotted red;
 }
 
 </style>
@@ -347,7 +349,6 @@ document.querySelector('h1').insertAdjacentHTML('afterend', html)
 indexcall = document.createElement('div')
 indexcall.classList.add('indexcall')
 indexcall_a = document.createElement('a')
-indexcall_a.textContent = '⏺'
 indexcall_a.href = 'https://mauforonda.github.io/notas/'
 indexcall.appendChild(indexcall_a)
 document.body.prepend(indexcall)
