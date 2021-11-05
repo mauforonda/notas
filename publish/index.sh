@@ -13,7 +13,7 @@ for ipynb in $(ls -t *.ipynb); do
     filename=$(echo $ipynb | sed -E 's/ipynb/html/g')
     path=$(echo ${base}${filename})
     title=$(jq '[.cells[]|select( .cell_type | contains("markdown"))]|first.source[0]' $ipynb | sed -E 's/# //')
-    last_modified=$(date -r $ipynb "+%Y-%m-%d")
+    last_modified=$(date -d @$(git log -1 --pretty="format:%at" $ipynb) +%Y-%m-%d)
     lines_code=$(jq '.cells[]|select( .cell_type | contains("code"))|.source|length' $ipynb | paste -sd+ | bc)
     lines_md=$(jq '.cells[]|select( .cell_type | contains("markdown"))|.source|length' $ipynb | paste -sd+ | bc)
     plots=$(jq '[[.cells[]|select(.cell_type == "code" and .outputs != [])][]|.outputs[]|select(.data|has("image/png"))]|length' $ipynb)
