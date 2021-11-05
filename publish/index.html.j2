@@ -34,74 +34,6 @@ $(document).ready(function() {
 });
 </script>
 
-<script>
-// Converts integer to roman numeral
-function romanize(num) {
-    var lookup = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1},
-	roman = '',
-	    i;
-	for ( i in lookup ) {
-	    while ( num >= lookup[i] ) {
-		roman += i;
-		num -= lookup[i];
-	    }
-	}
-	return roman;
- }
-
-// Builds a <ul> Table of Contents from all <headers> in DOM
-function createTOC(){
-    var toc = "";
-    var level = 0;
-    var levels = {}
-    $('#toc').html('');
-
-    $(":header").each(function(i){
-	    if (this.id=='tocheading'){return;}
-        
-	    var titleText = this.innerHTML;
-	    var openLevel = this.tagName[1];
-
-	    if (levels[openLevel]){
-		levels[openLevel] += 1;
-	    } else{
-		levels[openLevel] = 1;
-	    }
-
-	    if (openLevel > level) {
-		toc += (new Array(openLevel - level + 1)).join('<ul class="toc">');
-	    } else if (openLevel < level) {
-		toc += (new Array(level - openLevel + 1)).join("</ul>");
-		for (i=level;i>openLevel;i--){levels[i]=0;}
-	    }
-
-	    level = parseInt(openLevel);
-
-
-	    if (this.id==''){this.id = this.innerHTML.replace(/ /g,"-")}
-	    var anchor = this.id;
-        
-	    toc += '<li><a href="#' + encodeURIComponent(anchor) + '">'
-		+ romanize(levels[openLevel].toString()) + '. ' + titleText
-		+ '</a></li>';
-        
-	});
-
-    
-    if (level) {
-	toc += (new Array(level + 1)).join("</ul>");
-    }
-
- 
-    $('#toc').append(toc);
-
-};
-
-// Executes the createToc function
-setTimeout(function(){createTOC();},100);
-
-</script>
-
 <style>
 div.input {
 	flex-direction: column !important;
@@ -129,6 +61,7 @@ body {
 
 .jp-RenderedHTMLCommon p, .jp-RenderedHTMLCommon > :last-child {
 	margin-bottom: 1em;
+	margin-top: 1em;
 }
 
 .dataframe {
@@ -137,6 +70,7 @@ body {
 
 table.dataframe tbody tr th {
 	font-style: normal;
+	background: white !important;
 }
 
 td {
@@ -256,9 +190,13 @@ div.code_shower {
 
 #toc {
 	padding: 10px;
-	background: #fff;
-	border: 1px solid #cedbe6;
-	border-radius: 5px;
+	background: #fdfcfc;
+	border-top: 2px solid #cedbe6;
+	border-bottom: 2px solid #cedbe6;
+}
+
+#toc ul {
+	padding-left: 1em;
 }
 
 #toc li {
@@ -292,6 +230,31 @@ div.code_shower {
 	filter: hue-rotate(50deg) grayscale(50%);
 }
 
+.datalink, .notelink {
+	border-radius: 5px;
+	background: #f0f4f9;
+	color: #596e8a !important;
+	padding: 2px 6px;
+}
+
+.datalink:hover, .notelink:hover {
+	background: #7ba9ea;
+	color: white !important;
+	text-decoration: none !important;
+}
+
+.abstract_title {
+	text-align: center;
+	font-size: 1.3em;
+}
+
+.abstract > p {
+	border: 1px solid #e3eae9;
+	border-radius: 5px;
+	padding: 20px;
+	background: #fafafb;
+}
+
 </style>
 {% endblock html_head %}
 
@@ -310,3 +273,53 @@ div.code_shower {
 
 {% block in_prompt %}
 {% endblock in_prompt %}
+
+{% block footer %}
+<script>
+var headers = []
+
+function walk (nodes) {
+  nodes.forEach((node) => {
+    var sub = Array.from(node.childNodes)
+    if (sub.length) {
+      walk(sub)
+    }
+    if (/h[2-3]/i.test(node.tagName)) {
+      headers.push({
+        id: node.getAttribute('id'),
+        level: parseInt(node.tagName.replace('H', '')),
+        title: node.innerText
+      })
+    }
+  })
+}
+
+walk(Array.from(document.body.childNodes))
+
+var link = (header) =>
+  '<li><a href="#' + header.id + '">' + header.title + '</a></li>'
+
+var html = '<div id="toc"><ul>'
+
+headers.forEach((header, index) => {
+  if (index) {
+    var prev = headers[index - 1]
+  }
+  if (!index || prev.level === header.level) {
+    html += link(header)
+  }
+  else if (prev.level > header.level) {
+    html += '</ul>' + link(header)
+  }
+  else if (prev.level < header.level) {
+    html += '<ul>' + link(header)
+  }
+})
+
+html += '</ul></div>'
+
+document.querySelector('h1').insertAdjacentHTML('afterend', html)
+
+</script>
+
+{% endblock footer %}
