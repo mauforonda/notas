@@ -21,7 +21,7 @@ jobs:
         run: |
           mkdir -p docs
           for f in $(ls *.ipynb); do ./publish/publish.sh "$f"; done
-          mv publish/index.* docs/
+          mv publish/index.{json,html} docs/
       - name: push
         uses: s0/git-publish-subdir-action@develop
         env:
