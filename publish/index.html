@@ -14,6 +14,7 @@
 	  display: flex;
 	  align-items: center;
 	  justify-content: center;
+	  background: #fbfcff;
       }
 
       body {
@@ -34,6 +35,7 @@
 	  margin: 10px 0px;
 	  border-radius: 5px;
 	  border:1px solid #e3e6ea;
+	  background: white;
       }
 
 
@@ -47,15 +49,15 @@
 	  color:#282c39;
 	  font-weight: bold;
 	  font-size: 1.2rem;
-	  background: #cedbe6;
+	  background: #eff2f7;
 	  text-decoration: none;
 	  margin: 0;
 	  border-radius: 3px 3px 0px 0px;
       }
 
-      .title p:hover{
-	  background:red;
-	  color:white;
+      .title p:hover {
+	  background: #dadff7;
+	  color: black;
 	  border-radius: 5px 5px 0px 0px;
       }
 
@@ -85,53 +87,53 @@
       
     </style>
     <script data-goatcounter="https://mauforonda.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-</head>
-<body>
-  <div class="index"></div>
-  <script>
-    
-    function display(data){
-	index = document.querySelector('.index')
-	data.forEach((entry) => {
-	    entry_el = document.createElement('div')
-	    entry_el.classList.add('entry')
+            async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    <div class="index"></div>
+    <script>
+      
+      function display(data){
+	  index = document.querySelector('.index')
+	  data.forEach((entry) => {
+	      entry_el = document.createElement('div')
+	      entry_el.classList.add('entry')
 
-	    title_el = document.createElement('a')
-	    title_el.classList.add('title')
-	    title_el.href = entry.path
-	    title_text = document.createElement('p')
-	    title_text.textContent = entry.title
-	    title_el.appendChild(title_text)
+	      title_el = document.createElement('a')
+	      title_el.classList.add('title')
+	      title_el.href = entry.path
+	      title_text = document.createElement('p')
+	      title_text.textContent = entry.title
+	      title_el.appendChild(title_text)
 
-	    meta_el = document.createElement('div')
-	    meta_el.classList.add('meta')
-	    lines_code_el = document.createElement('span')
-	    lines_code_el.textContent = `${entry.lines_code} líneas de código`
-	    meta_el.appendChild(lines_code_el)
-	    lines_md_el = document.createElement('span')
-	    lines_md_el.textContent = `${entry.lines_md} líneas de prosa`
-	    meta_el.appendChild(lines_md_el)
-	    plots_el = document.createElement('span')
-	    plots_el.textContent = `${entry.plots} gráficos`
-	    meta_el.appendChild(plots_el)
+	      meta_el = document.createElement('div')
+	      meta_el.classList.add('meta')
+	      lines_code_el = document.createElement('span')
+	      lines_code_el.textContent = `${entry.lines_code} líneas de código`
+	      meta_el.appendChild(lines_code_el)
+	      lines_md_el = document.createElement('span')
+	      lines_md_el.textContent = `${entry.lines_md} líneas de prosa`
+	      meta_el.appendChild(lines_md_el)
+	      plots_el = document.createElement('span')
+	      plots_el.textContent = `${entry.plots} gráficos`
+	      meta_el.appendChild(plots_el)
 
-	    time_el = document.createElement('div')
-	    time_el.classList.add('time')
-	    time_el.textContent = `modificado en ${entry.last_modified}`
+	      time_el = document.createElement('div')
+	      time_el.classList.add('time')
+	      time_el.textContent = `modificado en ${entry.last_modified}`
 
-	    entry_el.appendChild(title_el)
-	    entry_el.appendChild(meta_el)
-	    entry_el.appendChild(time_el)
+	      entry_el.appendChild(title_el)
+	      entry_el.appendChild(meta_el)
+	      entry_el.appendChild(time_el)
 
-	    index.appendChild(entry_el)
-	})
-    }
-    
-    fetch('index.json').then((response) => {
-	response.json().then((data) => {
-	    display(data)
-	})})
-  </script>
-</body>
+	      index.appendChild(entry_el)
+	  })
+      }
+      
+      fetch('index.json').then((response) => {
+	  response.json().then((data) => {
+	      display(data)
+	  })})
+    </script>
+  </body>
 </html>
