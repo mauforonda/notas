@@ -14,34 +14,55 @@
 	  display: flex;
 	  align-items: center;
 	  justify-content: center;
-	  background: #fbfcff;
+	  background: linear-gradient(180deg, rgb(251, 252, 255) 0%, rgb(248, 246, 251) 100%);
       }
 
       body {
 	  font-family: 'Roboto', sans-serif;
-	  max-width: 800px;
+	  max-width: 1100px;
 	  width: 100%;
       }
 
+      .heading {
+	  padding: 20px;
+      }
+
+      .heading_title {
+	  font-size: 2.5rem;
+	  font-weight: bold;
+	  text-transform: uppercase;
+	  text-align: center;
+      }
+
+      .heading_subtitle {
+	  font-size: .8rem;
+	  text-align: center;
+	  color: #a1a7bf;
+      }
+      
+      
       .index{
 	  display:flex;
-	  flex-direction: column;
 	  align-items: center;
-	  justify-content: center
+	  justify-content: center;
+	  flex-flow: wrap;
+	  padding-bottom: 30px;
       }
 
       .entry{
-	  width:100%;
 	  margin: 10px 0px;
 	  border-radius: 5px;
 	  border:1px solid #e3e6ea;
 	  background: white;
+	  width: 300px;
+	  margin: 8px;
       }
 
 
       .title{
 	  border-bottom: 1px solid #e3e6ea; 
 	  text-decoration: none;
+	  text-align: center;
       }
 
       .title p{
@@ -67,6 +88,7 @@
 	  border-radius: 3px;
 	  margin: 20px 0px 0px 0px;
 	  color: #656b75;
+	  text-align: center;
       }
 
       .meta span{
@@ -74,15 +96,54 @@
 	  font-size: .7rem;
 	  color: #a2b1bd;
 	  padding: 5px 0px;
-	  border-top: 2px solid #cedbe6;
+      }
+
+      .number_code{
+	  border-top: 2px solid #91e4f7;
+      }
+
+      .number_md{
+	  border-top: 2px solid #f0cf8e;
+      }
+
+      .number_plots{
+	  border-top: 2px solid #ecacac;
       }
 
       .time{
+	  padding: 12px;
+	  font-size: .7rem;
+	  color: #a2b1bd;
+	  opacity: .7;
+	  text-align: center;
+      }
+
+      .footer {
+	  padding: 20px;
+	  border-top: 1px solid #e3e6ea;
+      }
+
+      .contact {
+	  text-align: center;
+      }
+
+      .contacto_tipo {
 	  padding: 10px;
 	  font-size: .7rem;
 	  color: #a2b1bd;
-	  font-style: italic;
 	  opacity: .7;
+      }
+
+      .contacto_valor{
+	  font-size: .7rem;
+	  color: #a2b1bd;
+      }
+
+
+      @media only screen and (max-width: 610px) {
+	  .entry{
+	      width:100%;
+	  }
       }
       
     </style>
@@ -90,7 +151,17 @@
             async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
+    <div class="heading">
+      <div class="heading_title">Notas</div>
+      <div class="heading_subtitle">de mauforonda</div>
+    </div>
     <div class="index"></div>
+    <div class="footer">
+      <div class="contact">
+	<span class="contacto_tipo">contacto</span>
+	<span class="contacto_valor">mauriforonda@gmail.com</span>
+      </div>
+    </div>
     <script>
       
       function display(data){
@@ -109,12 +180,15 @@
 	      meta_el = document.createElement('div')
 	      meta_el.classList.add('meta')
 	      lines_code_el = document.createElement('span')
+	      lines_code_el.classList.add('number_code')
 	      lines_code_el.textContent = `${entry.lines_code} líneas de código`
 	      meta_el.appendChild(lines_code_el)
 	      lines_md_el = document.createElement('span')
+	      lines_md_el.classList.add('number_md')
 	      lines_md_el.textContent = `${entry.lines_md} líneas de prosa`
 	      meta_el.appendChild(lines_md_el)
 	      plots_el = document.createElement('span')
+	      plots_el.classList.add('number_plots')
 	      plots_el.textContent = `${entry.plots} gráficos`
 	      meta_el.appendChild(plots_el)
 

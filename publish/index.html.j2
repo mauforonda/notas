@@ -46,12 +46,16 @@ div.input_area {
 	border-radius: 0px 0px 8px 8px;
 }
 
-
 html {
     font-family: 'Roboto', sans-serif !important;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgb(251, 252, 255);
+}
+
+.jp-Notebook{
+	background: transparent !important;
 }
 
 body {
@@ -125,7 +129,7 @@ code {
 	align-content: center;
 	justify-content: left;
 	margin: 2px;
-	background: linear-gradient(180deg, rgb(255, 255, 255) 0%, rgb(252, 252, 252) 48%, rgb(227, 234, 233) 50%, rgb(252, 252, 252) 52%, rgb(255, 255, 255) 100%);
+	background: linear-gradient(180deg, transparent 0%, transparent 48%, rgb(227, 234, 233) 50%, transparent 52%, transparent 100%);
 }
 }
 
@@ -147,6 +151,9 @@ h1, h2, h3, h4, h5, h6, h7, h8 {
 h1{
     font-size: 2.5rem !important;
     text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: #000000;
 }
 
 h2{
@@ -229,7 +236,12 @@ div.code_shower {
 }
 
 .jp-InputArea-editor {
-	filter: hue-rotate(50deg) grayscale(50%);
+	background: #fcfcfd !important;
+	opacity: .9;
+}
+
+.highlight {
+	   background: transparent !important;
 }
 
 .datalink, .notelink {
@@ -260,23 +272,60 @@ div.code_shower {
 .indexcall {
 	text-align: center;
 	line-height: 1;
-	display: flex;
-	justify-content: center;
 	margin: 10px 0px 0px 0px;
+	padding: 5px;
+}
+
+.index_subtitle {
+    font-size: .8rem;
+    text-align: center;
+    color: #cedbe6;
+    padding: 5px;
 }
 
 .indexcall a {
-	font-size: 50px;
-	margin: 0;
-	color: #cedbe6;
-	border-bottom: 10px dotted #cedbe6;
-	width: 60px;
+    margin: 0;
+    color: #cedbe6;
+    width: 100%;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .indexcall a:hover{
-	   color:red;
-	   border-bottom: 10px dotted red;
+	   color: #bcc6f4;
 }
+
+.jp-RenderedHTMLCommon img, .jp-RenderedImage img, .jp-RenderedHTMLCommon svg, .jp-RenderedSVG svg {
+		       max-width: 99%;
+		       border: 1px solid #e3eae9;
+		       margin-left: auto;
+		       margin-right: auto;
+		       display: block;
+}
+
+.footer {
+    margin-top: 40px;
+	  padding: 20px;
+	  border-top: 1px solid #e3e6ea;
+      }
+
+      .contact {
+	  text-align: center;
+      }
+
+      .contacto_tipo {
+	  padding: 10px;
+	  font-size: .7rem;
+	  color: #a2b1bd;
+	  opacity: .7;
+      }
+
+      .contacto_valor{
+	  font-size: .7rem;
+	  color: #a2b1bd;
+      }
 
 </style>
 {% endblock html_head %}
@@ -298,6 +347,15 @@ div.code_shower {
 {% endblock in_prompt %}
 
 {% block footer %}
+
+<div class="footer">
+     <div class="contact">
+     	  <span class="contacto_tipo">contacto</span>
+	  <span class="contacto_valor">mauriforonda@gmail.com</span>
+	 </div>
+</div>
+
+
 <script>
 var headers = []
 
@@ -348,9 +406,17 @@ document.querySelector('h1').insertAdjacentHTML('afterend', html)
 
 indexcall = document.createElement('div')
 indexcall.classList.add('indexcall')
+index_title = document.createElement('div')
+index_title.classList.add('index_title')
 indexcall_a = document.createElement('a')
+indexcall_a.textContent = 'Notas'
 indexcall_a.href = 'https://mauforonda.github.io/notas/'
-indexcall.appendChild(indexcall_a)
+index_subtitle = document.createElement('div')
+index_subtitle.classList.add('index_subtitle')
+index_subtitle.textContent = 'de mauforonda'
+index_title.appendChild(indexcall_a)
+indexcall.appendChild(index_title)
+indexcall.appendChild(index_subtitle)
 document.body.prepend(indexcall)
 
 </script>
