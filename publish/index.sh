@@ -7,7 +7,7 @@ n=$(ls *.ipynb | wc -l)
 
 echo '[' > $index
 
-for ipynb in $(git log --pretty='' --name-only *.ipynb | awk '!seen[$0]++'); do
+for ipynb in $(ls *.ipynb | git_by_date); do
 
     created=$(git log --format="%at" $ipynb | tail -1)
     if test -z "$created";then
