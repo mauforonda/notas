@@ -17,9 +17,9 @@ for ipynb in $(ls *.ipynb | git_by_date); do
     fi
     
     let i++
-    filename=$(echo $ipynb | sed -E 's/ipynb/html/g')
+    filename=$(echo $ipynb | sed -E 's/\.ipynb//g')
     modified=$(date -r $ipynb  "+%Y-%m-%d")
-    path=$(echo ${base}${filename})
+    path=$(echo ${filename})
     title=$(jq '[.cells[]|select( .cell_type | contains("markdown"))]|first.source[0]' $ipynb | sed -E 's/# //')
     subtitle=$(jq '[.cells[]|select( .cell_type | contains("markdown"))] | [.[]|select(.source|first|contains(">"))] | first.source[0]' $ipynb | sed -E 's/> //')
     lines_code=$(jq '.cells[]|select( .cell_type | contains("code"))|.source|length' $ipynb | paste -sd+ | bc)
