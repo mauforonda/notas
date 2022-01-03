@@ -409,12 +409,16 @@ document.body.prepend(indexcall)
 
 const images = document.querySelectorAll('.jp-RenderedImage.jp-OutputArea-output img');
 images.forEach((image) => image.onclick = () => {
+		       if (image.classList.contains("zoomed")){
+		       	 image.parentElement.style.height = "auto";
+		       } else {
+		       	  image.parentElement.style.height = image.offsetHeight + "px";
+		       	}
 		       image.classList.toggle('zoomed');
 		       if (image.classList.contains("zoomed")){
 		       	  image.parentElement.style.height = image.offsetHeight + "px";
-		       } else {
-		       	 image.parentElement.style.height = "auto";
 		       	}
+
 		       });
 
 </script>
