@@ -250,14 +250,24 @@
 
 	      bottomcard = document.createElement('div')
 	      bottomcard.classList.add('bottomcard')
+
+	      created_date = new Date(entry.created.split("-"))
+	      created_friendly = created_date.toLocaleDateString('en-US', {day: "numeric"}) + " " + created_date.toLocaleDateString('en-US', {month: "short"})
+	      modified_date = new Date(entry.last_modified.split("-"))
+	      modified_friendly = modified_date.toLocaleDateString('en-US', {day: "numeric"}) + " " + modified_date.toLocaleDateString('en-US', {month: "short"})
+	      
 	      time_el = document.createElement('div')
 	      time_el.classList.add('time')
+	      
 	      time_created = document.createElement('div')
 	      time_created.classList.add('time_created')
-	      time_created.innerHTML = `creado<br>${entry.created}`
+	      time_created.title = entry.created
+	      time_created.innerHTML = `creado<br>${created_friendly}`
+
 	      time_mod = document.createElement('div')
 	      time_mod.classList.add('time_modified')
-	      time_mod.innerHTML = `modificado<br>${entry.last_modified}`
+	      time_mod.title = entry.last_modified
+	      time_mod.innerHTML = `modificado<br>${modified_friendly}`
 	      time_el.appendChild(time_created)
 	      time_el.appendChild(time_mod)
 

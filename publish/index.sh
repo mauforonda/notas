@@ -2,6 +2,7 @@
 
 index='publish/index.json'
 base='https://mauforonda.github.io/notas/'
+dateformat="+%Y-%m-%d"
 i=0
 n=$(ls *.ipynb | wc -l)
 
@@ -11,14 +12,14 @@ for ipynb in $(ls *.ipynb | git_by_date); do
 
     created=$(git log --format="%at" $ipynb | tail -1)
     if test -z "$created";then
-	created=$(date +%Y-%m-%d)
+	created=$(date "$dateformat")
     else
-	created=$(date -d @$created +%Y-%m-%d)
+	created=$(date -d @$created "$dateformat")
     fi
     
     let i++
     filename=$(echo $ipynb | sed -E 's/\.ipynb//g')
-    modified=$(date -r $ipynb  "+%Y-%m-%d")
+    modified=$(date -r $ipynb "$dateformat")
     path=$(echo ${filename})
     title=$(jq '[.cells[]|select( .cell_type | contains("markdown"))]|first.source[0]' $ipynb | sed -E 's/# //')
     subtitle=$(jq '[.cells[]|select( .cell_type | contains("markdown"))] | [.[]|select(.source|first|contains(">"))] | first.source[0]' $ipynb | sed -E 's/> //')
