@@ -4,9 +4,6 @@
 	{{ super() }}
 
 <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"> 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
 	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -39,6 +36,31 @@ $(document).ready(function() {
 </script>
 
 <style>
+
+      @font-face { font-family: "et-book";
+		   src: url("fonts/et-book/et-book-roman-line-figures.woff");
+		   font-weight: normal;
+		   font-style: normal; }
+
+      @font-face { font-family: "et-book";
+		   src: url("fonts/et-book/et-book-display-italic-old-style-figures.woff");
+		   font-weight: normal;
+		   font-style: italic; }
+
+      @font-face { font-family: "et-book";
+		   src: url("fonts/et-book/et-book-bold-line-figures.woff");
+		   font-weight: bold;
+		   font-style: normal; }
+
+      @font-face { font-family: "Roboto";
+		   src: url("fonts/roboto/Roboto-Bold.ttf");
+		   font-weight: bold;
+		   font-style: normal; }
+      @font-face { font-family: "Roboto";
+		   src: url("fonts/roboto/Roboto-Regular.ttf");
+		   font-weight: normal;
+		   font-style: normal; }
+
 div.input {
 	flex-direction: column !important;
 }
@@ -48,7 +70,7 @@ div.input_area {
 }
 
 html {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'et-book' !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,7 +82,7 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'et-book' !important;
     max-width: 800px;
     width: 100%;
 }
@@ -76,7 +98,6 @@ body {
 
 table.dataframe tbody tr th {
 	font-style: normal;
-	background: white !important;
 }
 
 td {
@@ -88,8 +109,14 @@ th {
 	color: #91a0b7;
 }
 
-h1, h2, h3, h4, h5, h6, h7, h8, p, li {
+h1, h2, h3, h4, h5, h6, h7, h8 {
     font-family: 'Roboto', sans-serif !important;
+}
+
+p, li, .csl-entry {
+    font-family: 'et-book' !important;
+    line-height: 1.75em;
+    font-size: 1.1rem;
 }
 
 pre {
@@ -104,7 +131,7 @@ pre {
 	border-radius: 10px;
 	border: 1px solid #ced2dd;
 	line-height: 25px;
-	font-family: Roboto !important;
+	font-family: et-book !important;
 	font-size: 15px;
 }
 
@@ -138,8 +165,8 @@ table.dataframe thead tr {
     color: #6F7695;
 }
 
-table.dataframe tbody tr td {
-    background-color: #fdfdff;
+tr td, tr, th{
+    background-color: transparent !important;
     color: #6f747d;
 }
 
@@ -170,10 +197,6 @@ h4, h5, h6, h7, h8{
     padding: 20px 0px !important;
 }
 
-p {
-	line-height: 1.75em;
-}
-
 .jp-Cell-inputWrapper, .jp-Cell-outputWrapper {
 	margin: 5px 0px;
 }
@@ -200,9 +223,9 @@ div.code_shower {
 
 #toc {
 	padding: 10px;
-	background: #fdfcfc;
-	border-top: 2px solid #cedbe6;
-	border-bottom: 2px solid #cedbe6;
+	background: transparent;
+	border-top: 1px solid #cedbe6;
+	border-bottom: 1px solid #cedbe6;
 }
 
 #toc ul {
@@ -213,6 +236,8 @@ div.code_shower {
 	margin: 10px 0px;
 	color: #cedbe6;
 	border-bottom: 1px dotted #cedbe6;
+	font-family: "Roboto" !important;
+	font-size: .9rem;
 }
 
 #toc a {
@@ -271,6 +296,7 @@ div.code_shower {
 }
 
 .indexcall {
+	font-family: "Roboto";
 	text-align: center;
 	line-height: 1;
 	margin: 10px 0px 0px 0px;
@@ -306,6 +332,14 @@ div.code_shower {
 		       display: block;
 }
 
+blockquote {
+	border-left: 2px solid black !important;
+}
+
+blockquote p {
+	font-size: 1.4rem;
+}
+
 .footer {
     margin-top: 40px;
 	  padding: 20px;
@@ -313,6 +347,7 @@ div.code_shower {
       }
 
       .contact {
+      	  font-family: "Roboto";
 	  text-align: center;
       }
 
