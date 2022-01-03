@@ -221,29 +221,6 @@ div.code_shower {
 	line-height: 29px;
 }
 
-#toc {
-	padding: 10px;
-	background: transparent;
-	border-top: 1px solid #cedbe6;
-	border-bottom: 1px solid #cedbe6;
-}
-
-#toc ul {
-	padding-left: 1em;
-}
-
-#toc li {
-	margin: 10px 0px;
-	color: #cedbe6;
-	border-bottom: 1px dotted #cedbe6;
-	font-family: "Roboto" !important;
-	font-size: .9rem;
-}
-
-#toc a {
-	color: #698297;
-}
-
 .csl-bib-body {
 	margin: 30px 0px;
 }
@@ -403,52 +380,6 @@ blockquote p {
 
 
 <script>
-var headers = []
-
-function walk (nodes) {
-  nodes.forEach((node) => {
-    var sub = Array.from(node.childNodes)
-    if (sub.length) {
-      walk(sub)
-    }
-    if (/h[2-3]/i.test(node.tagName)) {
-      headers.push({
-        id: node.getAttribute('id'),
-        level: parseInt(node.tagName.replace('H', '')),
-        title: node.innerText
-      })
-    }
-  })
-}
-
-walk(Array.from(document.body.childNodes))
-
-var link = (header) =>
-  '<li><a href="#' + header.id + '">' + header.title + '</a></li>'
-
-if (headers.length > 0) {
-
-var html = '<div id="toc"><ul>'
-
-headers.forEach((header, index) => {
-  if (index) {
-    var prev = headers[index - 1]
-  }
-  if (!index || prev.level === header.level) {
-    html += link(header)
-  }
-  else if (prev.level > header.level) {
-    html += '</ul>' + link(header)
-  }
-  else if (prev.level < header.level) {
-    html += '<ul>' + link(header)
-  }
-})
-
-html += '</ul></div>'
-
-document.querySelector('h1').insertAdjacentHTML('afterend', html)
-}
 
 indexcall = document.createElement('div')
 indexcall.classList.add('indexcall')
