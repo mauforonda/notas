@@ -66,6 +66,25 @@ body {
     text-align: center;
 }
 
+.heading_intro {
+    font-size: 17px;
+    font-family: "et-book";
+    text-align: center;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+}
+
+.heading_intro p {
+    line-height: 1.5;
+    padding: 0px;
+    margin: 1.5px;
+}
+
+.heading_intro a {
+    text-decoration: none;
+}
 
 .index{
     display:flex;
