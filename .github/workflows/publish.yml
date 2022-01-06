@@ -26,7 +26,7 @@ jobs:
           mv interactivo/ docs/
           mv publish/cover docs/
           mv publish/fonts docs/
-          mv publish.entry.css docs/
+          mv publish/entry.css docs/
       - name: push
         uses: s0/git-publish-subdir-action@develop
         env:
