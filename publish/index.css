@@ -1,0 +1,210 @@
+
+@font-face { font-family: "et-book";
+	     src: url("fonts/et-book/et-book-roman-line-figures.woff");
+	     font-weight: normal;
+	     font-style: normal; }
+
+@font-face { font-family: "et-book";
+	     src: url("fonts/et-book/et-book-display-italic-old-style-figures.woff");
+	     font-weight: normal;
+	     font-style: italic; }
+
+@font-face { font-family: "et-book";
+	     src: url("fonts/et-book/et-book-bold-line-figures.woff");
+	     font-weight: bold;
+	     font-style: normal; }
+
+@font-face { font-family: "Roboto";
+	     src: url("fonts/roboto/Roboto-Bold.ttf");
+	     font-weight: bold;
+	     font-style: normal; }
+@font-face { font-family: "Roboto";
+	     src: url("fonts/roboto/Roboto-Regular.ttf");
+	     font-weight: normal;
+	     font-style: normal; }
+
+@font-face { font-family: "source-serif";
+	     src: url("fonts/source-serif/SourceSerif4-Black.ttf.woff");
+	     font-weight: bold;
+	     font-style: normal; }
+
+html {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    background: linear-gradient(180deg, #FBF7F6 0%, #F7F7F7 100%);
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    max-width: 1100px;
+    width: 100%;
+    overflow: scroll;
+}
+
+.heading {
+    padding: 5px;
+    color: #555966;
+    line-height: 1;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.heading_title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "source-serif";
+}
+
+.heading_subtitle {
+    padding: 5px;
+    font-size: .8rem;
+    text-align: center;
+}
+
+
+.index{
+    display:flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-flow: wrap;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.entry {
+    border-radius: 15px;
+    border: 1px solid #dcdddf;
+    background: #FFFEFD;
+    width: 500px;
+    margin: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.entry:hover{
+    box-shadow: 0px 0px 12px 0px rgb(230, 228, 238);
+    transform: scale3d(1.02, 1.02, 1.02);
+}
+
+.entry:hover .title p:first-of-type{
+    color: #353e59;
+}
+
+.title_container {
+    background: transparent;
+    color: #555966;
+}
+
+.title{
+    border-bottom: 1px solid #e3e6ea; 
+    text-decoration: none;
+    text-align: center;
+    color:inherit
+}
+
+.title p{
+    font-family: "et-book";
+    padding: 25px 40px;
+    font-size: 1.8rem;
+    background: transparent;
+    text-decoration: none;
+    margin: 0;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.subtitle {
+    font-family: "et-book";
+    font-size: .95rem !important;
+    padding-top: 0px !important;
+    font-weight: normal !important;
+    line-height: 1.5;
+}
+
+.meta{
+    font-size: .7em;
+    padding: 3px 5px;
+    margin: 5px 0px 0px 0px;
+    color: #55596682;
+    text-align: center;
+}
+
+.meta span{
+    margin: 5px;
+    font-size: .7rem;
+    padding: 7px 0px;
+}
+
+.number_code{
+    border-top: 3px solid #91e4f7;
+}
+
+.number_md{
+    border-top: 3px solid #f0cf8e;
+}
+
+.number_plots{
+    border-top: 3px solid #ecacac;
+}
+
+.time {
+    font-size: .7rem;
+    color: #55596682;
+    display: flex;
+    flex-direction: row;
+    padding: 12px 21px;
+}
+
+.time_created {
+    text-align: left;
+}
+
+.time_modified {
+    text-align: right;
+    margin-left: auto;
+}
+
+.footer {
+    padding: 20px;
+    border-top: 1px solid #e3e6ea;
+}
+
+.contact {
+    text-align: center;
+}
+
+.contacto_tipo {
+    padding: 10px;
+    font-size: .7rem;
+    color: #a2b1bd;
+    opacity: .7;
+}
+
+.contacto_valor{
+    font-size: .7rem;
+    color: #a2b1bd;
+}
+
+.cover {
+    height: 80px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.cover img {
+    width: 100%;
+    max-width: 100%;
+}
+
+@media only screen and (max-width: 610px) {
+    .entry{
+	width:100%;
+    }
+}
