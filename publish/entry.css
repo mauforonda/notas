@@ -335,6 +335,39 @@ blockquote p {
     box-shadow: 0px 0px 12px 0px rgb(230, 228, 238);
 }
 
+
+.dataTables_filter label {
+	color: #555966;
+}
+
+.dataTables_filter input {
+	border: 1px solid #dcdddf !important;
+	background: #f7f7f7 !important;
+margin: 10px;
+color: #555966;
+}
+
+.dataTables_info {
+	color: #555966 !important;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+	border-bottom: 1px solid #dfe0e1 !important;
+	overflow-x: hidden !important;
+}
+
+.dataTable thead th {
+	border-bottom: 1px solid #dfe0e1 !important;
+}
+
+.dataTables_info {
+	color: #555966 !important;
+	padding: 20px 10px 10px 10px !important;
+	font-size: .8rem;
+	float: right !important;
+}
+
+
 .footer {
     margin-top: 40px;
     padding: 20px;
@@ -365,3 +398,4 @@ blockquote p {
     margin-right: auto;
     display: block;
 }
+`
