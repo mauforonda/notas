@@ -13,10 +13,10 @@ function display(data){
 	cover = document.createElement('div')
 	cover.classList.add('cover')
 	cover_img = document.createElement('img')
-	cover_img.src = 'cover/' + entry.path + '.png'
+	cover_img.src = entry.cover
 	cover.appendChild(cover_img)
 	title_el.appendChild(cover)
-	title_el.href = 'https://mauforonda.github.io/notas/' + entry.path + '.html'
+	title_el.href = entry.path
 	title_text = document.createElement('p')
 	title_text.textContent = entry.title
 	title_el.appendChild(title_text)
@@ -26,20 +26,28 @@ function display(data){
 	title_el.appendChild(subtitle_text)
 	title_container.appendChild(title_el)
 
+	topcard.appendChild(title_container)
+
 	meta_el = document.createElement('div')
 	meta_el.classList.add('meta')
-	lines_code_el = document.createElement('span')
-	lines_code_el.classList.add('number_code')
-	lines_code_el.textContent = `${entry.lines_code} líneas de código`
-	meta_el.appendChild(lines_code_el)
-	lines_md_el = document.createElement('span')
-	lines_md_el.classList.add('number_md')
-	lines_md_el.textContent = `${entry.lines_md} líneas de prosa`
-	meta_el.appendChild(lines_md_el)
-	plots_el = document.createElement('span')
-	plots_el.classList.add('number_plots')
-	plots_el.textContent = `${entry.plots} gráficos`
-	meta_el.appendChild(plots_el)
+
+	if (entry.outside == false) {
+	    lines_code_el = document.createElement('span')
+	    lines_code_el.classList.add('number_code')
+	    lines_code_el.textContent = `${entry.lines_code} líneas de código`
+	    meta_el.appendChild(lines_code_el)
+	    lines_md_el = document.createElement('span')
+	    lines_md_el.classList.add('number_md')
+	    lines_md_el.textContent = `${entry.lines_md} líneas de prosa`
+	    meta_el.appendChild(lines_md_el)
+	    plots_el = document.createElement('span')
+	    plots_el.classList.add('number_plots')
+	    plots_el.textContent = `${entry.plots} gráficos`
+	    meta_el.appendChild(plots_el)
+
+	}
+	
+	topcard.appendChild(meta_el)
 
 	bottomcard = document.createElement('div')
 	bottomcard.classList.add('bottomcard')
@@ -64,8 +72,6 @@ function display(data){
 	time_el.appendChild(time_created)
 	time_el.appendChild(time_mod)
 
-	topcard.appendChild(title_container)
-	topcard.appendChild(meta_el)
 	bottomcard.appendChild(time_el)
 	
 	entry_el.appendChild(topcard)

@@ -1,0 +1,14 @@
+[
+    {
+	"outside": true,
+	"path": "https://mauforonda.github.io/catalogo-ine/",
+	"cover": "cover/catalogo-ine.png",
+	"title": "Catálogo INE",
+	"subtitle": "Datos que mantiene el Instituto Nacional de Estadística de Bolivia y cuándo los actualiza.",
+	"created": "2022-01-28",
+	"last_modified": "2022-02-01",
+	"lines_code": 0,
+	"lines_md": 0,
+	"plots": 0
+    }
+]
