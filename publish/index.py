@@ -43,7 +43,7 @@ def get_notebook_attributes(filename):
     with open(filename, 'r') as f:
         file = json.load(f)
     
-    if len(commits) > 0:
+    if len(commits) > 0 and commits[0] != "": 
         created = dt.datetime.fromtimestamp(int(commits[-1])).strftime(timeformat)
     else:
         created = dt.datetime.now().strftime(timeformat)
