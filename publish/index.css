@@ -222,6 +222,17 @@ body {
     max-width: 100%;
 }
 
+p code {
+    font-size: .8rem !important;
+}
+
+.outside {
+    background: #fdfaf7;
+    min-height: 35px;
+    border-top: 1px solid #f7f3ef;
+    border-bottom: 1px solid #f7f3ef;
+}
+
 @media only screen and (max-width: 610px) {
     .entry{
 	width:100%;

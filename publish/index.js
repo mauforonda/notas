@@ -45,6 +45,10 @@ function display(data){
 	    plots_el.textContent = `${entry.plots} gráficos`
 	    meta_el.appendChild(plots_el)
 
+	} else {
+	    outside_el = document.createElement('div')
+	    outside_el.classList.add('outside')
+	    meta_el.appendChild(outside_el)
 	}
 	
 	topcard.appendChild(meta_el)
