@@ -222,10 +222,6 @@ body {
     max-width: 100%;
 }
 
-p code {
-    font-size: .8rem !important;
-}
-
 .outside {
     background: #fdfaf7;
     min-height: 35px;

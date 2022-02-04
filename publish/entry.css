@@ -399,3 +399,6 @@ color: #555966;
     display: block;
 }
 `
+p code {
+    font-size: .8rem !important;
+}
