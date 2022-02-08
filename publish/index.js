@@ -1,4 +1,7 @@
 function display(data){
+
+    outside_svg = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circles" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="7" r="4"></circle><circle cx="6.5" cy="17" r="4"></circle> <circle cx="17.5" cy="17" r="4"></circle></svg>'
+    
     index = document.querySelector('.index')
     data.forEach((entry) => {
 	entry_el = document.createElement('div')
@@ -34,20 +37,21 @@ function display(data){
 	if (entry.outside == false) {
 	    lines_code_el = document.createElement('span')
 	    lines_code_el.classList.add('number_code')
-	    lines_code_el.textContent = `${entry.lines_code} líneas de código`
+	    lines_code_el.textContent = `${entry.lines_code} ${(entry.lines_code) == 1 ? "línea de código" : "líneas de código"}`
 	    meta_el.appendChild(lines_code_el)
 	    lines_md_el = document.createElement('span')
 	    lines_md_el.classList.add('number_md')
-	    lines_md_el.textContent = `${entry.lines_md} líneas de prosa`
+	    lines_md_el.textContent = `${entry.lines_md} ${(entry.lines_md) == 1 ? "oración" : "oraciones"}`
 	    meta_el.appendChild(lines_md_el)
 	    plots_el = document.createElement('span')
 	    plots_el.classList.add('number_plots')
-	    plots_el.textContent = `${entry.plots} gráficos`
+	    plots_el.textContent = `${entry.plots} ${(entry.plots) == 1 ? "gráfico" : "gráficos"}`
 	    meta_el.appendChild(plots_el)
 
 	} else {
 	    outside_el = document.createElement('div')
 	    outside_el.classList.add('outside')
+	    outside_el.innerHTML = outside_svg
 	    meta_el.appendChild(outside_el)
 	}
 	

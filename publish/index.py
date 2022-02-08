@@ -13,10 +13,10 @@ def get_subtitle(file):
     return [cell for cell in file['cells'] if cell['cell_type'] == 'markdown' and '>' in cell['source'][0]][0]['source'][0].replace('>', '').strip()
 
 def get_lines_code(file):
-    return len([cell for cell in file['cells'] if cell['cell_type'] == 'code'])
+    return sum([len(cell['source']) for cell in file['cells'] if cell['cell_type'] == 'code'])
 
 def get_lines_md(file):
-    return len([cell for cell in file['cells'] if cell['cell_type'] == 'markdown'])
+    return sum([len('.'.join(cell['source']).split('.')) for cell in file['cells'] if cell['cell_type'] == 'markdown'])
 
 def get_plots(file):
     plots = 0
@@ -77,5 +77,5 @@ outside = get_outside('publish/outside.json')
 notebooks.extend(outside)
 
 with open('publish/index.json', 'w+') as f:
-    index = pd.DataFrame(notebooks).sort_values('created', ascending=False).to_dict(orient='records')
+    index = pd.DataFrame(notebooks).sort_values('created', ascending=False).fillna("").to_dict(orient='records')
     json.dump(index, f)
