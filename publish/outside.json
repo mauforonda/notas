@@ -16,5 +16,14 @@
 	"subtitle": "Archivo de los datos geográficos del gobierno.",
 	"created": "2021-05-01",
 	"last_modified": "2021-05-10"
+    },
+    {
+	"outside": true,
+	"path": "https://mauforonda.github.io/geodatos/",
+	"cover": "cover/geodatos.png",
+	"title": "Datos geográficos del gobierno Boliviano",
+	"subtitle": "Inventario de datos geográficos publicados por entidades de gobierno en Bolivia",
+	"created": "2022-02-22",
+	"last_modified": "2022-02-22"
     }
 ]
