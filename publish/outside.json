@@ -25,5 +25,14 @@
 	"subtitle": "Inventario de datos geográficos publicados por entidades de gobierno en Bolivia",
 	"created": "2022-02-22",
 	"last_modified": "2022-02-22"
+    },
+    {
+	"outside": true,
+	"path": "https://mauforonda.github.io/vigilancia-epidemiologica/",
+	"cover": "cover/vigilancia-epidemiologica.png",
+	"title": "Vigilancia epidemiológica en Bolivia",
+	"subtitle": "Datos abiertos sobre vigilancia epidemiológica a nivel de mes y municipio entre 2001 y 2021",
+	"created": "2022-04-30",
+	"last_modified": "2022-05-02"
     }
 ]
